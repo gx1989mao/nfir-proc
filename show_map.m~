@@ -1,0 +1,31 @@
+clear;
+clc;
+
+%%
+load('map.mat');
+
+figure;
+surface(Z');
+
+
+%%
+load('back1_HBO_sorted.mat');
+sig = SIGS;
+
+sig1 = zeros(48,256,24);
+for sub=1:24
+    for ch=1:48
+        p = length(sig(ch,:,sub));
+        sig1(ch,:,sub) = resample( sig(ch,:,sub) ,256,p);
+    end
+end
+
+%%
+ch=1;
+
+figure;
+subplot(211);
+plot(sig1(ch,:,sub) );hold on;
+subplot(212);
+plot(sig(ch,:,sub) );hold on;
+
